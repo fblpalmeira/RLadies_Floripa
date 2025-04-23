@@ -2,6 +2,11 @@
 ## Meetup ["Explorando o pacote {pcir} para análise de conflitos e consenso"](https://www.meetup.com/rladies-florianopolis/events/305989838/?eventOrigin=group_upcoming_events)
 ### [Francesca B. L. Palmeira](https://fblpalmeira.github.io/), francesca@alumni.usp.br 
 
+O  [`pcir` - Potential for Conflict Index in R](https://fblpalmeira.github.io/pcir/) é um método estatístico descritivo usado para melhorar a compreensão dos resultados em pesquisas de dimensões humanas. O pacote oferece as ferramentas necessárias para calcular, comparar e representar graficamente o potencial de conflito entre grupos de interesse. Os conceitos de consenso e discordância/conflito têm relevância em vários campos, incluindo economia, ciência política, psicologia, sociologia e recursos naturais. Vale a pena notar que, embora o PCI possa ser computado atualmente usando softwares como Excel, SPSS e SAS, não havia nenhum pacote no R dedicado para realizar essa análise específica.
+
+Para mais informações sobre a PCI, visite a página do [Professor Jerry J. Vaske](https://sites.warnercnr.colostate.edu/jerryv/potential-conflict-index/). Nela tem disponível a extensão 
+da PCI para ser utilizada no Excel,  SPSS e SAS.
+
 -----
 
 ## Criando uma conta no [Posit Cloud](https://posit.cloud/)
