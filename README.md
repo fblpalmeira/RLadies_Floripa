@@ -26,7 +26,7 @@ Lembre-se que para fazer os exercícios que estão on-line, você vai precisar t
 
 - [Link1 `.R`](https://posit.cloud/content/10231646) 
 
-- [Link2 `.R`]()
+- [Link2 `.R`](https://posit.cloud/content/10231646)
 
 - [Link3 `.R`]()
 
