@@ -42,7 +42,7 @@ No link abaixo, está todo o material deste treinamento incluindo o código dos 
 
 O objetivo desta prática é visualizar o Índice Potencial de Conflito (PCI) entre grupos de interesse utilizando dados de entrevistas estruturadas ou questionários. 
 
-### Fluxo de trabalho  
+## Fluxo de trabalho  
 
 Etapas implementadas no pacote `pcir`:
 
