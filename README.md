@@ -32,24 +32,77 @@ Lembre-se que para fazer os exercícios que estão on-line, você vai precisar t
 
 - [Link4 `.R`]()
 
------
-
 ## Material 
 
 No link abaixo, está todo o material deste treinamento incluindo o código dos exercícios, as planilhas .xlsx, os tutoriais em .pdf, etc.
 
 - [Material para download]()
 
------
-
 ## Prática 
 
 O objetivo desta prática é visualizar o Índice Potencial de Conflito (PCI) entre grupos de interesse utilizando dados de entrevistas estruturadas ou questionários. 
 
+### Fluxo de trabalho  
+
+Etapas implementadas no pacote `pcir`:
+
+- Ler os dados de entrada provenientes das entrevistas – ver conjunto de dados de exemplo (Planilha);  
+- Contar a frequência das respostas para cada pergunta – ver (Tabela 1);  
+- Calcular o PCI para cada pergunta – ver (Tabela 2);  
+- Gerar um gráfico de bolhas para visualizar os resultados – ver (Figura).
+
+---
+
+## Usage
+
+```r
+# Instala o pacote pcir 
+# Só precisa ser instalado na primeira vez que utilizar o pacote
+devtools::install_github("fblpalmeira/pcir")
+
+# Abre o pacote pcir
+# Precisa ser carregado toda vez que você abrir o arquivo pcir_exercise.R
+library(pcir)
+
+# Adiciona os dados brutos (na escala Likert)
+df1 <- data.frame(
+  A = c(-1, -1, -1, -1, -1),
+  B = c(-1, 1, 1, -1, 1),
+  C = c(1, 1, 1, 1, -1),
+  D = c(-1, -1, 1, 1, 1),
+  E = c(1, 1, -1, -1, -1),
+  F = c(-1, -1, -1, -1, -1),
+  G = c(-1, 1, 1, -1, 1),
+  H = c(1, 1, 1, 1, -1)
+)
+
+# Conta as frequências de cada categoria
+df_count <- counting(df1)
+df_count
+
+# Calcula o índice potencial de conflito (PCI)
+df_pci <- pci(df_count)
+df_pci
+
+# Visualiza o índice por meio de uma gráfico de bolhas
+bubble_plot <- bubble(df_pci)
+bubble_plot # Display the bubble plot
+```
+
+-----
+
 ## Bibliografia básica
 
-- [ `.html`]()
+Manfredo, M., Vaske, J., Teel, T. (2003). [The potential for conflict index: A graphic approach to practical significance of human dimensions research](https://www.tandfonline.com/doi/abs/10.1080/10871200304310). Human Dimensions of Wildlife 8(3), 219-228.
+
+Vaske, J. J., Beaman, J., Barreto, H., Shelby, L. B. (2010). [An extension and further validation of the potential for conflict index](https://www.tandfonline.com/doi/abs/10.1080/01490401003712648). Leisure Sciences 32(3), 240-254.
 
 ## Leitura adicional
 
-- [ `.html`]()
+Bath, A. J., Engel, M. T., van der Marel, R. C., Kuhn, T. S., & Jung, T. S. (2022). [Comparative views of the public, hunters, and wildlife managers on the management of reintroduced bison (Bison bison)](https://www.sciencedirect.com/science/article/pii/S2351989422000178). Global Ecology and Conservation 34, e02015.
+
+Engel, M. T., Vaske, J. J. (2022). [Balancing public acceptability and consensus regarding marine protected areas management using the Potential for Conflict Index2](https://www.sciencedirect.com/science/article/abs/pii/S0308597X22000896). Marine Policy 139, 105042.
+
+Engel, M. T., Vaske, J. J., Bath, A. J., Marchini, S. (2017). [Attitudes toward jaguars and pumas and the acceptability of killing big cats in the Brazilian Atlantic Forest: an application of the Potential for Conflict Index 2](https://link.springer.com/article/10.1007/s13280-017-0898-6). Ambio 46, 604-612.
+
+Palmeira, F. B. L., Trinca, C. T., Haddad, C. M. (2015). [Livestock predation by puma (Puma concolor) in the highlands of a southeastern Brazilian Atlantic Forest](https://link.springer.com/article/10.1007/s00267-015-0562-5). Environmental Management 56, 903-915.
