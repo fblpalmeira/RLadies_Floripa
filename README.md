@@ -21,8 +21,6 @@ Primeiro, você deverá criar uma conta pessoal no [Posit Cloud](https://posit.c
 
 ## Conhecendo o ambiente R
 
-- [Conhecendo o RStudio `.pdf`]():
-
 - [Tutorial para fazer um gráfico de waffle `.pdf`](https://github.com/fblpalmeira/pronta_cientista_2024/blob/main/docs/Tutotial_RStudio_Cloud_Waffle_Pronta_Cientista_2024_05_25.pdf): o código do exercício está dentro dos [links](https://github.com/fblpalmeira/pronta_cientista/blob/main/README.md#links-dos-exerc%C3%ADcios-no-posit-cloud). Caso tenha alguma dúvida sobre o exercício é só seguir o tutorial, nele tem todo o passo a passo de como construir o gráfico da sua biografia e, ao final, exportá-lo para o computador.
 
 ## Links dos exercícios no [Posit Cloud](https://posit.cloud/)
@@ -31,19 +29,11 @@ A seguir, precisaremos acessar os exercícios clicando em qualquer um dos links 
 
 Lembre-se que para fazer os exercícios que estão on-line, você vai precisar ter acesso à internet, abrir uma conta no [Posit Cloud](https://posit.cloud/) e fazer login com o seu email particular, conforme explicado no início deste documento. 
 
-- [Link1 `.R`](https://posit.cloud/content/10231646) 
+- [Link1 `.R`](https://posit.cloud/content/10237078) 
 
 - [Link2 `.R`](https://posit.cloud/content/10231646)
 
-- [Link3 `.R`]()
-
-- [Link4 `.R`]()
-
-## Material 
-
-No link abaixo, está todo o material deste treinamento incluindo os códigos dos exercícios, as planilhas .xlsx, os tutoriais em .pdf, etc.
-
-- [Material para download]()
+- [Link3 `.R`](https://posit.cloud/content/10398430)
 
 ## Prática 
 
@@ -62,38 +52,61 @@ Etapas implementadas no pacote `pcir`:
 
 ## Usage
 
+### Instalar pacotes
 ```r
-# Instala o pacote pcir 
-# Só precisa ser instalado na primeira vez que utilizar o pacote
+# Desconsidere a linha abaixo se o pacote devtools não estiver instalado
+# install.packages("devtools")
+
+# Instala o pacote 'pcir' diretamente do GitHub
 devtools::install_github("fblpalmeira/pcir")
-
-# Abre o pacote pcir
-# Precisa ser carregado toda vez que você abrir o arquivo pcir_exercise.R
+```
+### Carregar o pacote pcir
+```r
+# Carrega o pacote 'pcir' na sessão do R
 library(pcir)
-
-# Adiciona os dados brutos (na escala Likert)
+```
+### Exemplo de data frame utilizado para calcular a PCI
+```r
+# Cria um data frame de exemplo com cinco colunas (A a E) e cinco linhas
 df1 <- data.frame(
-  A = c(-1, -1, -1, -1, -1),
-  B = c(-1, 1, 1, -1, 1),
-  C = c(1, 1, 1, 1, -1),
-  D = c(-1, -1, 1, 1, 1),
-  E = c(1, 1, -1, -1, -1),
-  F = c(-1, -1, -1, -1, -1),
-  G = c(-1, 1, 1, -1, 1),
-  H = c(1, 1, 1, 1, -1)
+  A = c(-3, -3, -3, 0, -3),
+  B = c(-3, 3, 0, -3, 3),
+  C = c(0, 0, 3, 0, -3),
+  D = c(0, -3, 3, 3, 3),
+  E = c(3, 3, 0, -3, -3)
 )
-
-# Conta as frequências de cada categoria
-df_count <- counting(df1)
-df_count
-
-# Calcula o índice potencial de conflito (PCI)
-df_pci <- pci(df_count)
-df_pci
-
-# Visualiza o índice por meio de uma gráfico de bolhas
-bubble_plot <- bubble(df_pci)
-bubble_plot # Display the bubble plot
+# Exibe o data frame criado
+df1
+```
+### Contar proporções das respostas na escala Likert
+```r
+# Aplica a função counting() para contar e resumir os dados nas colunas especificadas
+data <- counting(df1, cols = names(df1))
+# Exibe o resumo gerado pela função counting()
+data
+```
+### Calcula a PCI
+```r
+# Calcula o índice PCI2 com base no resumo anterior, usando escala bipolar com o valor neutro (com zero)
+data <- pci(data,
+            scale_type = 'bipolar_with_neutral',
+            min_scale_value = -3,
+            max_scale_value = 3)
+# Exibe o resultado do cálculo do PCI
+data
+```
+### Grafico de bolhas
+```r
+# A função bubble cria um gráfico de bolhas para visualizar os resultados do PCI
+# É possível personalizar cores e título conforme preferências
+plot <- bubble(data = data,
+               scale_type = 'bipolar_with_neutral',
+               ylim_range = 5,
+               bubble_color = 'lightblue',
+               bubble_stroke = 'darkblue',
+               title = 'Custom Bubble Colors')
+# Exibe o gráfico de bolhas gerado
+plot
 ```
 
 -----
